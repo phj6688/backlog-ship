@@ -1,0 +1,9 @@
+{
+  "name": "backlog-ship",
+  "description": "Ship a Linear backlog end to end: orchestrate-linear builds each issue, then every PR is gated by an independent pre-merge review plus CodeRabbit before merge or hand-off, with cleanup and a final report.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Peyman",
+    "email": "peyman.h.j@gmail.com"
+  }
+}
