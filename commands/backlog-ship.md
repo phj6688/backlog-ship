@@ -125,7 +125,8 @@ another's). For each:
    the integration branch is a holding stage before a later release. Title from
    the issue.
 2. **Independent pre-merge review (anti-bias).** Dispatch a **fresh**
-   `general-purpose` subagent that invokes the **`requesting-code-review`** skill
+   read-only **`code-reviewer`** subagent (tools: Read/Grep/Glob/Bash, no
+   Write/Edit/MultiEdit, so it cannot edit the code it grades) that invokes the **`requesting-code-review`** skill
    (or the repo's `/code-review`) against `git diff <integration>...<branch>`.
    Give it **only** the diff and the Linear issue's requirements, never the
    implementation history or the implementer's reasoning. It returns **approve**
