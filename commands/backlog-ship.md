@@ -78,15 +78,50 @@ If any required check fails, stop with a `needs input:` line naming the gap.
    project via the Linear MCP (`list_issues`). **Expand epics into child
    stories** (`list_issues parentId=<epic>`); never ship an epic container. Drop
    anything already In Review / Done.
-2. **Guard against status drift.** Linear status often understates reality:
-   real work can already sit on a local or remote branch the board does not
-   reflect. For each issue, check for an existing branch (its
-   `gitBranchName`, or a branch carrying the issue ID) before deciding it needs
-   a fresh build, so you fold in existing work instead of rebuilding it.
+2. **Guard against status drift, then classify each existing branch.** Linear
+   status often understates reality: real work can already sit on a local or
+   remote branch the board does not reflect. For each issue, find any existing
+   branch (its `gitBranchName`, or a branch carrying the issue ID). This git-ref
+   state is the one thing knowable cheaply and exactly before any build, so use
+   it to correct the intake set, never to predict conflicts (the branches that
+   would conflict do not exist until Phase 2 builds them).
+
+   For each issue that has a branch, classify it with two **read-only** counts
+   against the integration branch `INT` from Phase 0. Run `git fetch origin <INT>`
+   first so the comparison is current; never create a branch, change the working
+   tree, push, or open a PR here. With `B` = the resolved branch ref (local, else
+   `origin/<branch>`):
+   - `ahead  = git rev-list --count origin/<INT>..<B>`  (commits only on the branch)
+   - `behind = git rev-list --count <B>..origin/<INT>`  (commits only on `INT`)
+
+   Label the issue from the pair:
+   - `ahead=0, behind=0` → **branch-empty**: the branch is just `INT`, no work on it.
+   - `ahead=0, behind>0` → **already-merged**: no unique commits and `INT` has moved
+     past it, so a build would be a no-op.
+   - `ahead>0, behind=0` → **has-work**: real commits, current with `INT`; fold them
+     in instead of rebuilding.
+   - `ahead>0, behind>0` → **stale-N** (N = behind): real commits, but `INT` moved
+     `N` ahead since the fork, so a rebase and re-verify is due before merge.
+
+   An issue with no branch is **fresh-build**. For a "merge branch `<X>`" style
+   issue, also grep `git branch --merged origin/<INT>` for `<X>` to catch a target
+   that is already merged.
 3. If the set is empty → report
    `result: backlog drained, no not-started issues` and stop.
-4. If `--dry-run` → print the issue set (IDs, titles, any existing branch) and
-   the build plan you would hand to `orchestrate-linear`, then stop.
+4. If `--dry-run` → print one row per issue,
+   `ISSUE | title | branch | base-state | action`, with base-state and action
+   from step 2:
+   - **fresh-build** → build
+   - **has-work** → fold in existing work, may skip a full rebuild
+   - **stale-N** → rebuild or rebase, then re-verify
+   - **already-merged** → skip, the work is already on `INT`
+   - **branch-empty** → build fresh, the branch holds no work to fold
+
+   Then print the build plan you would hand to `orchestrate-linear` and stop. Call
+   out every **already-merged** issue as a likely wasted cycle to drop before the
+   real run, and every **branch-empty** issue so it is built fresh rather than
+   mistaken for existing work. Do not print predicted conflicts or buildability:
+   neither is knowable before Phase 2 builds the branches.
 
 ---
 
