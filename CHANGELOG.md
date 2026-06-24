@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2
+
+- `--dry-run` now classifies each issue's existing branch by its git-ref state against the integration branch (`fresh-build`, `has-work`, `stale-N`, `already-merged`, `branch-empty`) and prints a per-issue table with a recommended action, so already-merged and empty branches are caught before the real run instead of wasting an `orchestrate-linear` cycle. Read-only: no branches, working-tree changes, pushes, or PRs. It does not predict merge conflicts or buildability, which are unknowable before the build.
+
 ## 0.1.1
 
 - `--auto-merge` now wires the sha-pinned merge gate (`block-unverified-merge.sh`,
