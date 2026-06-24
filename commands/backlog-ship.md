@@ -178,10 +178,18 @@ the PR's CI is green.
   and hand it off:
   `needs input: <ISSUE> PR #<n> cleared and ready for your click-merge`.
 - **With `--auto-merge`:** merge the PR **only if** it is cleared **and** no
-  auth/proxy/compose file was touched anywhere in the diff. Otherwise hand it
-  off as above. After merge, let the GitHub to Linear integration advance the
-  issue's status from the merged PR; do not set status with `save_issue`. If the
-  repo has no GitHub to Linear integration, advance status with `save_issue`.
+  auth/proxy/compose file was touched anywhere in the diff. **For a gated homelab
+  project** (one with an entry in `~/.config/homelab/verify-target.json`),
+  immediately before merging run `~/.claude/gate/verify.sh` from the issue's
+  worktree and issue the merge from that same worktree, so the sha-pinned merge
+  gate (`block-unverified-merge.sh`, which refuses the merge unless the verify.sh
+  artifact's `verified_sha == HEAD`) passes; verify and merge must run from the
+  same checkout or the gate blocks on a mismatched HEAD. (The default hand-off
+  path is unaffected: a human clicking merge in the GitHub UI does not pass
+  through the PreToolUse hook.) Otherwise hand it off as above. After merge, let
+  the GitHub to Linear integration advance the issue's status from the merged PR;
+  do not set status with `save_issue`. If the repo has no GitHub to Linear
+  integration, advance status with `save_issue`.
 
 Hard limits regardless of flags: never merge to the default branch directly;
 merge feature into the integration branch only; serialize merges one at a time;

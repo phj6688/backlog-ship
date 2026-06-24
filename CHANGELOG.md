@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.1
+
+- `--auto-merge` now wires the sha-pinned merge gate (`block-unverified-merge.sh`,
+  claude-homelab): before merging a gated homelab project it runs
+  `~/.claude/gate/verify.sh` from the issue's worktree and merges from that same
+  checkout, so the gate's `verified_sha == HEAD` check passes instead of blocking
+  the merge. The default hand-off path is unaffected (a human UI merge does not
+  pass through the hook). (HLB-488)
+
 ## 0.1.0 (2026-06-14)
 
 Initial release.
