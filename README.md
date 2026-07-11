@@ -46,6 +46,14 @@ With no argument it infers the Linear project from the repo and scopes to the no
 5. **Ship.** Hands every cleared PR back for a manual click-merge by default, or merges it with `--auto-merge` only when CI is green, CodeRabbit has no open Critical or Major, the in-house reviewer approved, and no sensitive path was touched.
 6. **Clean up and report.** Deletes merged branches and worktrees, leaves everything else for you, posts one summary comment per PR, and prints a per-issue table.
 
+## Flow
+
+The full phase flow, the `--dry-run` short-circuit, the two-reviewer gate, and the `--auto-merge` vs hand-off split:
+
+![backlog-ship phase flow](docs/backlog-ship-flow.png)
+
+Edit the source in [`docs/backlog-ship-flow.drawio`](docs/backlog-ship-flow.drawio) (open with [diagrams.net](https://app.diagrams.net) or the Draw.io VS Code extension).
+
 ## Requirements
 
 - [`orchestrate-linear@phj`](https://github.com/phj6688/orchestrate-linear) for the build engine.

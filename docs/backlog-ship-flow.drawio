@@ -1,105 +1,219 @@
-<mxfile host="app.diagrams.net" agent="backlog-ship" version="24.0.0">
+<mxfile host="Electron" compressed="false">
   <diagram id="backlog-ship-flow" name="backlog-ship">
-    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1600" math="0" shadow="0">
+    <mxGraphModel dx="-611" dy="-486" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="0" page="0" pageScale="1" pageWidth="1240" pageHeight="1920" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="invoke" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;" value="Invoke&#xa;/backlog-ship [target] [--auto-merge] [--dry-run]" vertex="1">
+          <mxGeometry height="70" width="297" x="734.17" y="12" as="geometry" />
+        </mxCell>
+        <mxCell id="p0" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" value="Phase 0: Preflight&#xa;companion, git+GitHub, branches, Linear, CodeRabbit" vertex="1">
+          <mxGeometry height="60" width="398" x="683.67" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="p1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" value="Phase 1: Intake&#xa;pull not-started issues, expand epics, classify branches" vertex="1">
+          <mxGeometry height="70" width="392" x="686.67" y="312" as="geometry" />
+        </mxCell>
+        <mxCell id="dry" parent="1" style="rhombus;whiteSpace=wrap;html=1;perimeter=rhombusPerimeter;fillColor=#FFF2CC;strokeColor=#D6B656;" value="--dry-run?" vertex="1">
+          <mxGeometry height="80" width="140" x="812.67" y="462" as="geometry" />
+        </mxCell>
+        <mxCell id="dryout" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;" value="Print issue set + plan, then STOP&#xa;no branches, PRs, fixes, merges" vertex="1">
+          <mxGeometry height="60" width="366" x="265.5" y="751" as="geometry" />
+        </mxCell>
+        <mxCell id="p2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;" value="Phase 2: Build (delegate)&#xa;orchestrate-linear plans, TDD-builds, verifies; merges HELD" vertex="1">
+          <mxGeometry height="60" width="469" x="671.5" y="751" as="geometry" />
+        </mxCell>
+        <mxCell id="p3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" value="Phase 3: Integrate &amp; gate&#xa;open PR, in-house code-reviewer, CodeRabbit review" vertex="1">
+          <mxGeometry height="60" width="437" x="687.5" y="901" as="geometry" />
+        </mxCell>
+        <mxCell id="p4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" value="Phase 4: Triage &amp; fix (one round)&#xa;classify findings FIX / REJECT / DEFER; tripwire aborts" vertex="1">
+          <mxGeometry height="60" width="487" x="662.5" y="1051" as="geometry" />
+        </mxCell>
+        <mxCell id="cleared" parent="1" style="rhombus;whiteSpace=wrap;html=1;perimeter=rhombusPerimeter;fillColor=#FFF2CC;strokeColor=#D6B656;" value="Cleared?&#xa;both reviewers + verify + CI green" vertex="1">
+          <mxGeometry height="90" width="244" x="784" y="1201" as="geometry" />
+        </mxCell>
+        <mxCell id="p5auto" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;" value="Phase 5: --auto-merge&#xa;merge PR into integration branch (never default)" vertex="1">
+          <mxGeometry height="60" width="392" x="771" y="1500" as="geometry" />
+        </mxCell>
+        <mxCell id="p5hand" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" value="Phase 5: default hand-off&#xa;leave cleared PR open for operator click-merge" vertex="1">
+          <mxGeometry height="60" width="401" x="330" y="1500" as="geometry" />
+        </mxCell>
+        <mxCell id="notclear" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;" value="Not cleared&#xa;hand off / held / failed, carried forward" vertex="1">
+          <mxGeometry height="70" width="278" x="12" y="1500" as="geometry" />
+        </mxCell>
+        <mxCell id="p6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" value="Phase 6: Cleanup&#xa;delete merged branches/worktrees; keep handed-off intact" vertex="1">
+          <mxGeometry height="60" width="421" x="320" y="1650" as="geometry" />
+        </mxCell>
+        <mxCell id="p7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" value="Phase 7: Report&#xa;PR summary comments, per-issue table, result headline" vertex="1">
+          <mxGeometry height="60" width="400" x="330.5" y="1800" as="geometry" />
+        </mxCell>
+        <mxCell id="e_invoke_p0" edge="1" parent="1" source="invoke" style="rounded=1;html=1;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;edgeStyle=orthogonalEdgeStyle;" target="p0" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="882.67" y="117" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_p0_p1" edge="1" parent="1" source="p0" style="rounded=1;html=1;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;edgeStyle=orthogonalEdgeStyle;" target="p1" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="882.67" y="267" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_p1_dry" edge="1" parent="1" source="p1" style="rounded=1;html=1;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;edgeStyle=orthogonalEdgeStyle;" target="dry" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="882.67" y="417" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_dry_out" edge="1" parent="1" source="dry" style="rounded=1;html=1;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;noEdgeStyle=1;orthogonal=1;exitX=0.3333;exitY=1;entryX=0.5;entryY=0;" target="dryout" value="yes">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-116.91" y="88.5" as="offset" />
+            <Array as="points">
+              <mxPoint x="859.33" y="558" />
+              <mxPoint x="448.5" y="558" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_dry_p2" edge="1" parent="1" source="dry" style="rounded=1;html=1;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;noEdgeStyle=1;orthogonal=1;exitX=0.6666;exitY=1;entryX=0.5;entryY=0;" target="p2" value="no">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="906" y="542" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_p2_p3" edge="1" parent="1" source="p2" style="rounded=1;html=1;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;edgeStyle=orthogonalEdgeStyle;" target="p3" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="906" y="856" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_p3_p4" edge="1" parent="1" source="p3" style="rounded=1;html=1;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;edgeStyle=orthogonalEdgeStyle;" target="p4" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="906" y="1006" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_p4_cl" edge="1" parent="1" source="p4" style="rounded=1;html=1;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;edgeStyle=orthogonalEdgeStyle;" target="cleared" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="906" y="1156" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_cl_auto" edge="1" parent="1" source="cleared" style="rounded=1;html=1;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;noEdgeStyle=1;orthogonal=1;exitX=0.75;exitY=1;entryX=0.5;entryY=0;" target="p5auto" value="--auto-merge">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="967" y="1291" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_cl_hand" edge="1" parent="1" source="cleared" style="rounded=1;html=1;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;edgeStyle=orthogonalEdgeStyle;" target="p5hand" value="default">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-109.25" y="78.5" as="offset" />
+            <Array as="points">
+              <mxPoint x="906" y="1317" />
+              <mxPoint x="530.5" y="1317" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_cl_no" edge="1" parent="1" source="cleared" style="rounded=1;html=1;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;noEdgeStyle=1;orthogonal=1;exitX=0.25;exitY=1;entryX=0.5;entryY=0;" target="notclear" value="no">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-258.5" y="88.5" as="offset" />
+            <Array as="points">
+              <mxPoint x="845" y="1307" />
+              <mxPoint x="151" y="1307" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_auto_p6" edge="1" parent="1" source="p5auto" style="rounded=1;html=1;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.75;entryY=0;edgeStyle=orthogonalEdgeStyle;" target="p6" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="967" y="1576" />
+              <mxPoint x="635.75" y="1576" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_hand_p6" edge="1" parent="1" source="p5hand" style="rounded=1;html=1;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;edgeStyle=orthogonalEdgeStyle;" target="p6" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="530.5" y="1605" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_no_p6" edge="1" parent="1" source="notclear" style="rounded=1;html=1;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.25;entryY=0;edgeStyle=orthogonalEdgeStyle;" target="p6" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="151" y="1576" />
+              <mxPoint x="425.25" y="1576" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_p6_p7" edge="1" parent="1" source="p6" style="rounded=1;html=1;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;edgeStyle=orthogonalEdgeStyle;" target="p7" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="530.5" y="1755" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
 
-        <!-- Title -->
-        <mxCell id="title" value="/backlog-ship &#8212; ship a Linear backlog to merge-ready (or merged) PRs, double-gated" style="text;html=1;align=center;verticalAlign=middle;fontStyle=1;fontSize=16;fontColor=#c9772b;" vertex="1" parent="1">
-          <mxGeometry x="40" y="20" width="770" height="30" as="geometry" />
+        <mxCell id="title" value="backlog-ship: ship a Linear backlog to double-gated, merge-ready PRs" style="text;html=1;align=left;fontSize=18;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="12" y="12" width="640" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="subtitle" value="You gate and integrate. You do NOT write feature code &#8212; the build is delegated to orchestrate-linear." style="text;html=1;align=center;verticalAlign=middle;fontStyle=2;fontSize=11;fontColor=#7a7a7a;" vertex="1" parent="1">
-          <mxGeometry x="40" y="48" width="770" height="20" as="geometry" />
-        </mxCell>
-
-        <!-- Start -->
-        <mxCell id="start" value="Invoke:&#10;/backlog-ship [project | path | epic] [--auto-merge] [--dry-run]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a82a;strokeColor=#c9772b;fontColor=#15120b;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="245" y="80" width="360" height="50" as="geometry" />
+        <mxCell id="subtitle" value="You gate and integrate; the build is delegated to orchestrate-linear. Every PR clears two independent reviewers." style="text;html=1;align=left;fontSize=11;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="12" y="46" width="640" height="20" as="geometry" />
         </mxCell>
 
-        <!-- Phase 0 -->
-        <mxCell id="p0" value="Phase 0 &#8212; Preflight&#10;Check: orchestrate-linear installed, git + GitHub origin + gh auth,&#10;integration branch (dev) vs default branch, Linear MCP answers,&#10;CodeRabbit reachable (App or CLI). Any gap &#8594; stop with needs input." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fbe7c2;strokeColor=#c9772b;align=left;spacingLeft=10;" vertex="1" parent="1">
-          <mxGeometry x="185" y="160" width="480" height="75" as="geometry" />
+        <mxCell id="legend" value="Legend" style="swimlane;startSize=28;html=1;fontSize=12;fontStyle=1;fillColor=#FAFAFA;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="943" y="1600" width="220" height="196" as="geometry" />
         </mxCell>
-
-        <!-- Phase 1 -->
-        <mxCell id="p1" value="Phase 1 &#8212; Intake&#10;Pull not-started issues, expand epics into child stories.&#10;For each issue classify its existing branch vs integration branch (read-only):&#10;fresh-build / has-work / stale-N / already-merged / branch-empty." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fbe7c2;strokeColor=#c9772b;align=left;spacingLeft=10;" vertex="1" parent="1">
-          <mxGeometry x="185" y="265" width="480" height="80" as="geometry" />
+        <mxCell id="legend-sw-1" value="" style="rounded=0;fillColor=#FFE6CC;strokeColor=#D79B00;" vertex="1" parent="legend">
+          <mxGeometry x="10" y="36" width="30" height="16" as="geometry" />
         </mxCell>
-
-        <!-- dry-run decision -->
-        <mxCell id="dry" value="--dry-run?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ece0c8;strokeColor=#c9772b;" vertex="1" parent="1">
-          <mxGeometry x="345" y="375" width="160" height="70" as="geometry" />
+        <mxCell id="legend-tx-1" value="Invoke / entry point" style="text;html=1;align=left;fontSize=11;" vertex="1" parent="legend">
+          <mxGeometry x="50" y="34" width="160" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="dryout" value="Print issue set + intended plan&#10;(ISSUE | title | branch | base-state | action). STOP.&#10;No branches, PRs, fixes, merges." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8e8e8;strokeColor=#999999;align=left;spacingLeft=10;" vertex="1" parent="1">
-          <mxGeometry x="600" y="378" width="230" height="65" as="geometry" />
+        <mxCell id="legend-sw-2" value="" style="rounded=0;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="legend">
+          <mxGeometry x="10" y="60" width="30" height="16" as="geometry" />
         </mxCell>
-
-        <!-- Phase 2 -->
-        <mxCell id="p2" value="Phase 2 &#8212; Build (delegate, every merge HELD)&#10;Invoke orchestrate-linear with override auto-merge: hold.&#10;It plans the wave DAG, implements each issue TDD in an isolated worktree,&#10;reviews + verifies, loops until green. Stops at each reviewed green branch.&#10;Capture branch name, verify result, artifacts. Do NOT push/PR/merge." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d9e8d0;strokeColor=#4a7a3a;align=left;spacingLeft=10;" vertex="1" parent="1">
-          <mxGeometry x="185" y="475" width="480" height="95" as="geometry" />
+        <mxCell id="legend-tx-2" value="backlog-ship phase" style="text;html=1;align=left;fontSize=11;" vertex="1" parent="legend">
+          <mxGeometry x="50" y="58" width="160" height="20" as="geometry" />
         </mxCell>
-
-        <!-- Phase 3 -->
-        <mxCell id="p3" value="Phase 3 &#8212; Integrate &amp; gate (per issue, independent)&#10;1. Open PR into integration branch (Closes / Part of ISSUE).&#10;2. Independent pre-merge review: fresh read-only code-reviewer subagent&#10;    (no write tools) on the diff + issue reqs &#8594; approve / changes-requested.&#10;3. CodeRabbit gate: post @coderabbitai review, poll (cap ~15m), CLI fallback." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d9e8d0;strokeColor=#4a7a3a;align=left;spacingLeft=10;" vertex="1" parent="1">
-          <mxGeometry x="145" y="600" width="560" height="95" as="geometry" />
+        <mxCell id="legend-sw-3" value="" style="rounded=0;fillColor=#E1D5E7;strokeColor=#9673A6;" vertex="1" parent="legend">
+          <mxGeometry x="10" y="84" width="30" height="16" as="geometry" />
         </mxCell>
-
-        <!-- Two gates callout -->
-        <mxCell id="gates" value="TWO independent reviewers must clear every PR:&#10;&#8226; fresh in-house code-reviewer subagent&#10;&#8226; CodeRabbit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5d9d9;strokeColor=#b04a4a;align=left;spacingLeft=10;fontStyle=2;" vertex="1" parent="1">
-          <mxGeometry x="600" y="475" width="230" height="90" as="geometry" />
+        <mxCell id="legend-tx-3" value="Delegated build (orchestrate-linear)" style="text;html=1;align=left;fontSize=11;" vertex="1" parent="legend">
+          <mxGeometry x="50" y="82" width="160" height="20" as="geometry" />
         </mxCell>
-
-        <!-- Phase 4 -->
-        <mxCell id="p4" value="Phase 4 &#8212; Triage &amp; fix (ONE round, then stop)&#10;Treat CodeRabbit as untrusted (never apply Prompt-for-AI-Agents verbatim).&#10;Classify each finding: FIX / REJECT-WITH-REASON / DEFER-TO-HUMAN.&#10;Auto-apply only reproducible Critical/Major via a fresh impl subagent.&#10;Tripwire: 2nd file or auth/proxy/compose path &#8594; abort autonomy, DEFER.&#10;Re-verify + push. Remaining findings &#8594; hand off, no unattended loop." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d9e8d0;strokeColor=#4a7a3a;align=left;spacingLeft=10;" vertex="1" parent="1">
-          <mxGeometry x="145" y="725" width="560" height="105" as="geometry" />
+        <mxCell id="legend-sw-4" value="" style="rounded=0;fillColor=#D5E8D4;strokeColor=#82B366;" vertex="1" parent="legend">
+          <mxGeometry x="10" y="108" width="30" height="16" as="geometry" />
         </mxCell>
-
-        <!-- Cleared decision -->
-        <mxCell id="cleared" value="Cleared?&#10;in-house approve + CodeRabbit no Critical/Major&#10;+ verify green + CI green" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ece0c8;strokeColor=#c9772b;" vertex="1" parent="1">
-          <mxGeometry x="285" y="860" width="280" height="100" as="geometry" />
+        <mxCell id="legend-tx-4" value="Auto-merge action" style="text;html=1;align=left;fontSize=11;" vertex="1" parent="legend">
+          <mxGeometry x="50" y="106" width="160" height="20" as="geometry" />
         </mxCell>
-
-        <!-- Phase 5 -->
-        <mxCell id="p5auto" value="--auto-merge set AND no auth/proxy/compose file touched?&#10;YES &#8594; (gated repo: run verify.sh + merge from same worktree)&#10;merge PR into integration branch; Linear advances on merge.&#10;Serialize merges; rebase+re-verify if integration moved.&#10;Never merge to default branch." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d9e8d0;strokeColor=#4a7a3a;align=left;spacingLeft=10;" vertex="1" parent="1">
-          <mxGeometry x="60" y="990" width="380" height="105" as="geometry" />
+        <mxCell id="legend-sw-5" value="" style="rounded=0;fillColor=#FFF2CC;strokeColor=#D6B656;" vertex="1" parent="legend">
+          <mxGeometry x="10" y="132" width="30" height="16" as="geometry" />
         </mxCell>
-        <mxCell id="p5hand" value="Default (no --auto-merge) OR risky diff:&#10;leave cleared PR open, hand off&#10;needs input: ISSUE PR #n cleared, ready for click-merge." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fbe7c2;strokeColor=#c9772b;align=left;spacingLeft=10;" vertex="1" parent="1">
-          <mxGeometry x="470" y="990" width="320" height="105" as="geometry" />
+        <mxCell id="legend-tx-5" value="Decision" style="text;html=1;align=left;fontSize=11;" vertex="1" parent="legend">
+          <mxGeometry x="50" y="130" width="160" height="20" as="geometry" />
         </mxCell>
-
-        <!-- not cleared -->
-        <mxCell id="notclear" value="Not cleared &#8594; hand off / held / failed&#10;carried forward, reported not shipped" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5d9d9;strokeColor=#b04a4a;align=left;spacingLeft=10;" vertex="1" parent="1">
-          <mxGeometry x="620" y="870" width="210" height="80" as="geometry" />
+        <mxCell id="legend-sw-6" value="" style="rounded=0;fillColor=#F8CECC;strokeColor=#B85450;" vertex="1" parent="legend">
+          <mxGeometry x="10" y="156" width="30" height="16" as="geometry" />
         </mxCell>
-
-        <!-- Phase 6 -->
-        <mxCell id="p6" value="Phase 6 &#8212; Cleanup&#10;Merged: delete feature branch local+remote, remove worktree, clear temp artifacts.&#10;Handed-off / held / failed: leave branch, worktree, PR intact for the operator.&#10;Remove orphaned worktrees this run created." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fbe7c2;strokeColor=#c9772b;align=left;spacingLeft=10;" vertex="1" parent="1">
-          <mxGeometry x="145" y="1130" width="560" height="80" as="geometry" />
+        <mxCell id="legend-tx-6" value="Not shipped (hand-off / held / failed)" style="text;html=1;align=left;fontSize=11;" vertex="1" parent="legend">
+          <mxGeometry x="50" y="154" width="160" height="20" as="geometry" />
         </mxCell>
-
-        <!-- Phase 7 -->
-        <mxCell id="p7" value="Phase 7 &#8212; Report&#10;One summary comment per PR (house format).&#10;Per-issue table: ISSUE | branch | PR | in-house | CodeRabbit | CI | action.&#10;result: shipped N issues, M merged, H handed off, E escalated, F failed." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a82a;strokeColor=#c9772b;fontColor=#15120b;align=left;spacingLeft=10;" vertex="1" parent="1">
-          <mxGeometry x="185" y="1240" width="480" height="80" as="geometry" />
+        <mxCell id="legend-sw-7" value="" style="rounded=0;fillColor=#F5F5F5;strokeColor=#666666;" vertex="1" parent="legend">
+          <mxGeometry x="10" y="180" width="30" height="16" as="geometry" />
         </mxCell>
-
-        <!-- Edges -->
-        <mxCell id="e_start_p0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#c9772b;" edge="1" parent="1" source="start" target="p0"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e_p0_p1" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#c9772b;" edge="1" parent="1" source="p0" target="p1"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e_p1_dry" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#c9772b;" edge="1" parent="1" source="p1" target="dry"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e_dry_out" value="yes" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#999999;fontColor=#999999;" edge="1" parent="1" source="dry" target="dryout"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e_dry_p2" value="no" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#c9772b;" edge="1" parent="1" source="dry" target="p2"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e_p2_p3" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#4a7a3a;" edge="1" parent="1" source="p2" target="p3"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e_p3_p4" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#4a7a3a;" edge="1" parent="1" source="p3" target="p4"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e_p4_cl" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#4a7a3a;" edge="1" parent="1" source="p4" target="cleared"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e_cl_auto" value="yes" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#4a7a3a;" edge="1" parent="1" source="cleared" target="p5auto"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e_cl_hand" value="yes (default)" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#c9772b;" edge="1" parent="1" source="cleared" target="p5hand"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e_cl_no" value="no" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#b04a4a;fontColor=#b04a4a;" edge="1" parent="1" source="cleared" target="notclear"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e_auto_p6" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#c9772b;" edge="1" parent="1" source="p5auto" target="p6"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e_hand_p6" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#c9772b;" edge="1" parent="1" source="p5hand" target="p6"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e_no_p6" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#b04a4a;" edge="1" parent="1" source="notclear" target="p6"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e_p6_p7" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#c9772b;" edge="1" parent="1" source="p6" target="p7"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="legend-tx-7" value="Dry-run: stop, no changes" style="text;html=1;align=left;fontSize=11;" vertex="1" parent="legend">
+          <mxGeometry x="50" y="178" width="160" height="20" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
