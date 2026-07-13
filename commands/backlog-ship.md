@@ -197,9 +197,12 @@ any auth/proxy/compose path (`nginx*`, `Caddyfile`, `traefik/`, `cloudflared/`,
 them.
 
 Apply FIXes through a **fresh** implementation subagent on the same
-branch/worktree, **one round only**. Re-run the issue's verification after the
-fix and push. Then stop: do not loop unattended. If findings remain after the
-single round, hand off (Phase 5) and let the operator trigger a second pass.
+branch/worktree, **one round only**. Instruct that subagent to reach for the
+**`get-api-docs`** skill (`chub`) for current, version-matched docs when a fix
+touches an unfamiliar or fast-moving SDK API (on-demand, not a gate). Re-run the
+issue's verification after the fix and push. Then stop: do not loop unattended.
+If findings remain after the single round, hand off (Phase 5) and let the
+operator trigger a second pass.
 
 ---
 
